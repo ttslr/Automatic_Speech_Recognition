@@ -104,7 +104,7 @@ class DBiRNN(object):
                            'rnncell': self.cell_fn,
                            'num_layer': args.num_layer,
                            'num_hidden': args.num_hidden,
-                           'num_class': args.num_class,
+                           'num_classes': args.num_classes,
                            'activation': args.activation,
                            'optimizer': args.optimizer,
                            'learning rate': args.learning_rate,
@@ -115,7 +115,7 @@ class DBiRNN(object):
             with tf.name_scope('fc-layer'):
                 with tf.variable_scope('fc'):
                     weightsClasses = tf.Variable(
-                        tf.truncated_normal([args.num_hidden, args.num_class], name='weightsClasses'))
+                        tf.truncated_normal([args.num_hidden, args.num_classes], name='weightsClasses'))
                     biasesClasses = tf.Variable(tf.zeros([args.num_class]), name='biasesClasses')
                     logits = [tf.matmul(t, weightsClasses) + biasesClasses for t in fbHrs]
             logits3d = tf.stack(logits)
